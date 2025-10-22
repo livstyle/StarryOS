@@ -8,6 +8,12 @@ extern crate axlog;
 extern crate alloc;
 extern crate axruntime;
 
+#[cfg(feature = "vf2")]
+extern crate axplat_riscv64_visionfive2;
+
+#[cfg(feature = "opi5p")]
+extern crate axplat_aarch64_opi5p;
+
 use alloc::{borrow::ToOwned, vec::Vec};
 
 use axfs_ng::FS_CONTEXT;
@@ -16,8 +22,26 @@ mod entry;
 
 pub const CMDLINE: &[&str] = &["/bin/sh", "-c", include_str!("init.sh")];
 
+// pub const CMDLINE: &[&str] = &[
+//     "/bin/sh",
+//     "-c",
+//     r#"
+// #!/bin/sh
+// export HOME=/root
+// echo -e "Welcome to \e[96m\e[1mStarry OS\e[0m!"
+// env
+// echo
+// echo -e "Use \e[1m\e[3mapk\e[0m to install packages."
+// echo
+// cd ~
+// sh --login
+// "#,
+// ];
+
 #[unsafe(no_mangle)]
 fn main() {
+    ax_println!("start exec main function");
+
     starry_api::init();
 
     let args = CMDLINE
@@ -38,6 +62,3 @@ fn main() {
         .flush()
         .expect("Failed to flush rootfs");
 }
-
-#[cfg(feature = "vf2")]
-extern crate axplat_riscv64_visionfive2;

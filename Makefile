@@ -48,4 +48,7 @@ la:
 vf2:
 	$(MAKE) ARCH=riscv64 APP_FEATURES=vf2 MYPLAT=axplat-riscv64-visionfive2 BUS=dummy build
 
+opi5p:
+	$(MAKE) ARCH=aarch64 APP_FEATURES=opi5p MYPLAT=axplat-aarch64-opi5p BUS=dummy SMP=4 LOG=info MEM=8G NET=n build
+
 .PHONY: build run justrun debug disasm clean

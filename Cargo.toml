@@ -1,6 +1,6 @@
 [workspace]
 resolver = "2"
-members = ["api", "core"]
+members = ["api", "core", "axplat-aarch64-opi5p"]
 exclude = ["arceos"]
 
 [workspace.package]
@@ -108,6 +108,7 @@ qemu = [
 ]
 
 vf2 = ["dep:axplat-riscv64-visionfive2", "axfeat/driver-sdmmc-gpt"]
+opi5p = ["dep:axplat-aarch64-opi5p", "axfeat/driver-sdmmc-gpt"]
 
 # Stubs
 pci = ["axfeat/bus-pci"]
@@ -136,6 +137,11 @@ starry-api.workspace = true
 git = "https://github.com/Starry-OS/axplat-riscv64-visionfive2.git"
 rev = "5056c1d"
 features = ["fp-simd", "irq", "rtc"]
+optional = true
+
+[dependencies.axplat-aarch64-opi5p]
+path = "axplat-aarch64-opi5p"
+features = ["fp-simd", "irq", "rtc", "smp"]
 optional = true
 
 [patch.crates-io]

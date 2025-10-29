@@ -564,7 +564,7 @@ dependencies = [
  "axconfig-macros",
  "axcpu",
  "axplat",
- "axplat-aarch64-peripherals 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "axplat-aarch64-peripherals 0.2.0",
  "dw_apb_uart",
  "kspin",
  "log",
@@ -574,8 +574,6 @@ dependencies = [
 [[package]]
 name = "axplat-aarch64-peripherals"
 version = "0.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5a9a6548290a150059eb2ae015dc58d9b3d652461760327b95a490666129974c"
 dependencies = [
  "aarch64-cpu",
  "arm-gic-driver 0.15.8 (registry+https://github.com/rust-lang/crates.io-index)",

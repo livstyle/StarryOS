@@ -1,0 +1,41 @@
+[package]
+name = "axplat-aarch64-peripherals"
+version = "0.2.0"
+edition = "2024"
+authors = [
+    "Yuekai Jia <equation618@gmail.com>",
+    "Youjie Zheng <Azure_stars@126.com>",
+    "yanjuguang <coolyanjg@163.com>",
+    "Su Mingxian <aarkegz@gmail.com>",
+    "RobertYuan <634954435@qq.com>",
+    "hky1999 <keyang.hu@qq.com>",
+]
+description = "ARM64 common peripheral drivers with `axplat` compatibility (patched)"
+homepage = "https://github.com/arceos-org/arceos"
+documentation = "https://docs.rs/axplat-aarch64-peripherals"
+keywords = ["arceos", "os", "hal", "peripheral", "aarch64"]
+categories = ["embedded", "no-std", "hardware-support", "os"]
+license = "GPL-3.0-or-later OR Apache-2.0 OR MulanPSL-2.0"
+repository = "https://github.com/arceos-org/axplat_crates"
+resolver = "2"
+
+[package.metadata.docs.rs]
+targets = ["aarch64-unknown-none"]
+
+[lib]
+name = "axplat_aarch64_peripherals"
+path = "src/lib.rs"
+
+[dependencies]
+aarch64-cpu = "10.0"
+arm-gic-driver = "0.15"
+arm_pl011 = "0.1"
+arm_pl031 = "0.2"
+axcpu = "0.2"
+axplat = "0.2.0"
+int_ratio = "0.1"
+kspin = "0.1"
+lazyinit = "0.2"
+log = "0.4"
+page_table_entry = "0.5"
+spin = "0.10"

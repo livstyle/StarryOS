@@ -51,4 +51,9 @@ vf2:
 opi5p:
 	$(MAKE) ARCH=aarch64 APP_FEATURES=opi5p MYPLAT=axplat-aarch64-opi5p BUS=dummy SMP=4 LOG=info MEM=8G NET=n build
 
+
+opi5p-run:
+	$(MAKE) ARCH=aarch64 APP_FEATURES=opi5p MYPLAT=axplat-aarch64-opi5p BUS=dummy SMP=4 LOG=info MEM=8G NET=n run
+
+
 .PHONY: build run justrun debug disasm clean

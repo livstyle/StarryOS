@@ -1,6 +1,7 @@
 use alloc::vec;
 use core::ffi::c_char;
 
+use axconfig::ARCH;
 use axerrno::{AxError, AxResult};
 use axfs_ng::FS_CONTEXT;
 use linux_raw_sys::{
@@ -27,17 +28,17 @@ pub fn sys_getegid() -> AxResult<isize> {
 }
 
 pub fn sys_setuid(_uid: u32) -> AxResult<isize> {
-    debug!("sys_setuid <= uid: {}", _uid);
+    debug!("sys_setuid <= uid: {_uid}");
     Ok(0)
 }
 
 pub fn sys_setgid(_gid: u32) -> AxResult<isize> {
-    debug!("sys_setgid <= gid: {}", _gid);
+    debug!("sys_setgid <= gid: {_gid}");
     Ok(0)
 }
 
 pub fn sys_getgroups(size: usize, list: *mut u32) -> AxResult<isize> {
-    debug!("sys_getgroups <= size: {}", size);
+    debug!("sys_getgroups <= size: {size}");
     if size < 1 {
         return Err(AxError::InvalidInput);
     }
@@ -64,7 +65,7 @@ const UTSNAME: new_utsname = new_utsname {
     nodename: pad_str("starry"),
     release: pad_str("10.0.0"),
     version: pad_str("10.0.0"),
-    machine: pad_str("riscv64"),
+    machine: pad_str(ARCH),
     domainname: pad_str("https://github.com/Starry-OS/StarryOS"),
 };
 
@@ -101,10 +102,7 @@ pub fn sys_getrandom(buf: *mut u8, len: usize, flags: u32) -> AxResult<isize> {
     }
     let flags = GetRandomFlags::from_bits_retain(flags);
 
-    debug!(
-        "sys_getrandom <= buf: {:p}, len: {}, flags: {:?}",
-        buf, len, flags
-    );
+    debug!("sys_getrandom <= buf: {buf:p}, len: {len}, flags: {flags:?}");
 
     let path = if flags.contains(GetRandomFlags::RANDOM) {
         "/dev/random"
